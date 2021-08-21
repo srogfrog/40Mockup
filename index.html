@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hmmm</title>
     <style>
         /* html {
             cursor: url('./cursor.svg'), auto;
@@ -139,9 +139,19 @@
         }
 
         function break_pot(param){
-            let valids = ['url("./broken_pot.svg")', 'url("./real_clue.svg")', 'url("./fake_clue.svg")']
-            if(valids.includes(event.target.style.backgroundImage)){
-                if(event.target.style.backgroundImage != 'url("./broken_pot.svg")') {
+            let valids = ["broken_pot.svg", "real_clue.svg", "fake_clue.svg"];
+            let bool = false;
+            let bkg = event.target.style.backgroundImage;
+            for(let i = 0; i < valids.length; i++){
+                if(!bkg) {
+                    continue;
+                }
+                if(bkg.includes(valids[i])){
+                    bool=true;
+                }
+            }
+            if(bool){
+                if(!event.target.style.backgroundImage.includes(valids[0])) {
                     return;
                 }
                 (event.target).classList.remove('pot_spacer');
@@ -161,10 +171,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Galindo&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <div style="background-color: black;">
-        <span class="orcus_spacer orcus"></span>
+    <div style="display: flex; justify-content: space-between;">
+        <div style="background-color: black;">
+            <div class="orcus_spacer orcus"></div>
+        </div>
+        <div class="spacer wave-1"></div>
     </div>
-    <div class="spacer wave-1"></div>
     <div style="background-color: #b99d7a; display: flex; justify-content: space-between;">
         <section class="side-wall sw_spacer"></section>
         <div style="background-color: #b99d7a; text-align:center;">
