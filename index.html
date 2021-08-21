@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* html {
+            cursor: url('./cursor.svg'), auto;
+        } */
+        .spacer{
+            aspect-ratio: 960/200;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .orcus_spacer {
+            aspect-ratio: 631/512;
+            max-height: 631px;
+            max-width: 512px;
+            display: block;
+            margin: auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .sw_spacer {
+            /* aspect-ratio: 512/131; */
+            height: 512px;
+            width: 131px;
+            justify-content: flex-start;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .pot_spacer{
+            height: 93px;
+            width: 48px;
+            justify-content: flex-start;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .clue_spacer{
+            height: 22px;
+            width: 48px;
+            justify-content: flex-start;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .wave-1{
+            background-image: url('./breath.svg');
+        }
+        .orcus {
+            background-image: url('./orcus.svg');
+        }
+        .side-wall{
+            background-image: url('./side-wall-1.svg');
+        }
+        .side-wall-dup{
+            background-image: url('./side-wall-2.svg');
+        }
+        .pot{
+            background-image: url('./pot.svg');
+            cursor: url('./cursor.svg'), auto;
+        }
+        .introduction{
+            text-align: center;
+            padding: 5px;
+            flex-grow: 1;
+            font-family: 'Galindo', cursive;
+        }
+        .hidden_one {
+            color: #b99d7a;
+            font-size: 8px;
+            font-family: 'Galindo', cursive;
+            text-align: center;
+            transition-duration: 0.7s;
+            transition-property: transform;
+            margin:auto;
+        }
+
+        .hidden_one:hover {
+            color: #a37d50;
+            background-color: #a37d50;
+        }
+        /* .hoverable{
+            transition-duration: 1.8s;
+            transition-property: transform;
+        }
+        .hoverable:hover{
+            transform: rotate(360deg);
+        } */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .popup .popuptext{
+            visibility: hidden;
+            width: 150px;
+            background-color: #684329;
+            color: white;
+            text-align: center;
+            font-family: 'Galindo', cursive;
+            font-size: 10px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -75px;
+        }
+        .popup .show{
+            visibility: visible;
+            animation: fadeIn 1s;   
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity:1 ;}
+        }
+    </style>
+    <script>
+        function reveal_clue_1(){
+            event.target.style.color = "black";
+        }
+
+        function popup_one(){
+            var popup = document.getElementById("actualP");
+            popup.classList.toggle("show");
+        }
+
+        function break_pot(param){
+            let valids = ['url("./broken_pot.svg")', 'url("./real_clue.svg")', 'url("./fake_clue.svg")']
+            if(valids.includes(event.target.style.backgroundImage)){
+                if(event.target.style.backgroundImage != 'url("./broken_pot.svg")') {
+                    return;
+                }
+                (event.target).classList.remove('pot_spacer');
+                (event.target).classList.add('clue_spacer');
+                if(param != "actual"){
+                    event.target.style.backgroundImage = 'url("./fake_clue.svg")'; 
+                } else {
+                    event.target.style.backgroundImage = 'url("./real_clue.svg")'
+                }
+            } else {
+                event.target.style.backgroundImage = 'url("./broken_pot.svg")';
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galindo&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div style="background-color: black;">
+        <span class="orcus_spacer orcus"></span>
+    </div>
+    <div class="spacer wave-1"></div>
+    <div style="background-color: #b99d7a; display: flex; justify-content: space-between;">
+        <section class="side-wall sw_spacer"></section>
+        <div style="background-color: #b99d7a; text-align:center;">
+            <div style="display: flex; justify-content: space-between;">
+                <span class="introduction" style="font-size:30px;">40 Seasons</span>
+                <span class="hidden_one" onclick="reveal_clue_1()">K e >E< p . . .</span>
+                <span class="introduction" style="font-size:30px;">21 Legends</span>
+                <span class="hidden_one" onclick="reveal_clue_1()">L o o k i n g</span>
+                <span class="introduction" style="font-size:30px;">One Victor</span>
+            </div>
+            <section class="introduction">5 1/2 Years Ago... Default Text Default Text Default Text Default Text</section>
+            <section class="introduction">You waNt some more default text? Here's some more d<span class="popup" onclick="popup_one()">E<span class="popuptext" id="actualP">Possible Clue Here<br />(eg. "Pot 3")</span></span>fault text that goes yada yada yada yada yada idk</section>
+            <section class="introduction">Final POrtion, more text yada yada I'll find sometHing to say<br /> hmmm what's below?</section>
+            <div style="padding: 10px;"></div>
+            <div style="display: flex; justify-content: space-between; align-items:center;">
+                <span class="pot pot_spacer" onclick="break_pot('fake')"></span>
+                <span class="pot pot_spacer" onclick="break_pot('fake')"></span>
+                <span class="pot pot_spacer" onclick="break_pot('actual')"></span>
+                <span class="pot pot_spacer" onclick="break_pot('fake')"></span>
+                <span class="pot pot_spacer" onclick="break_pot('fake')"></span>
+            </div>
+            <div style="padding: 20px;"></div>
+            <section class="introduction">I'd assume the fake clues would be unique? just a mock up here though</section>
+            <section class="introduction">text below the stuff ((maybe something about completing a journey through Heaven, Hell, and Purgatory??)) Excited to see what y'all come up with for this idol hunt</section>
+        </div>
+        <div class="side-wall-dup sw_spacer"></div>
+    </div>
+</body>
+</html>
